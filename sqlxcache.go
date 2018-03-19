@@ -156,7 +156,9 @@ func (db *DB) ExecContext(ctx context.Context, query string, args ...interface{}
 }
 
 // func (db *DB) MapperFunc(mf func(string) string)
-// func (db *DB) MustBegin() *sqlx.Tx
+func (db *DB) MustBegin() *sqlx.Tx {
+	return db.db.MustBegin()
+}
 
 // func (db *DB) MustExec(query string, args ...interface{}) sql.Result {
 // 	stmt, err := db.cacheStmt(query)
