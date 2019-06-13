@@ -170,6 +170,15 @@ func (db *DB) NamedGetContext(ctx context.Context, dest interface{}, query strin
 	return namedStmt.GetContext(ctx, dest, arg)
 }
 
+func (db *DB) NamedSelectContext(ctx context.Context, dest interface{}, query string, arg interface{}) error {
+	namedStmt, err := db.cacheNamedStmtContext(ctx, query)
+	if err != nil {
+		return err
+	}
+
+	return namedStmt.SelectContext(ctx, dest, arg)
+}
+
 func (db *DB) NamedExecContext(ctx context.Context, query string, arg interface{}) (sql.Result, error) {
 	namedStmt, err := db.cacheNamedStmtContext(ctx, query)
 	if err != nil {
