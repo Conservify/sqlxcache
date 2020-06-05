@@ -124,6 +124,10 @@ func (db *DB) DriverName() string {
 	return db.db.DriverName()
 }
 
+func (db *DB) Rebind(sql string) string {
+	return db.db.Rebind(sql)
+}
+
 func (db *DB) Get(dest interface{}, query string, args ...interface{}) error {
 	stmt, err := db.cacheStmt(query)
 	if err != nil {
